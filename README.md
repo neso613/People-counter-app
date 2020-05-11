@@ -26,10 +26,13 @@ I have tried four public model downloaded from Tensorflow model zoo to optimize.
 All models have different accuracy and speed([see](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md))
 
 To convert the models into Intermediate Representation. I have used following command:
+
 <strong>For SSD models</strong>
+
 python /opt/intel/openvino/deployment_tools/model_optimizer/mo.py --input_model path_to_folder/frozen_inference_graph.pb --tensorflow_object_detection_api_pipeline_config path_to_folder/pipeline.config --reverse_input_channels --tensorflow_use_custom_operations_config /opt/intel/openvino/deployment_tools/model_optimizer/extensions/front/tf/ssd_v2_support.json --model_name any_new_name_for_model --output_dir models/IR
 
 <strong>For Faster RCNN model</strong>
+
 python /opt/intel/openvino/deployment_tools/model_optimizer/mo.py --input_model path_to_folder/frozen_inference_graph.pb --tensorflow_object_detection_api_pipeline_config path_to_folder/pipeline.config --reverse_input_channels --tensorflow_use_custom_operations_config /opt/intel/openvino/deployment_tools/model_optimizer/extensions/front/tf/faster_rcnn_support --model_name any_new_name_for_model --output_dir models/IR
 
 To run faster-rcnn model, main_fasterrcnn.py and main.py for SSD models are used respectively.
