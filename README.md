@@ -41,23 +41,23 @@ SSD based models are small in size and fast but not good at accuracy point of vi
 
 Original model consist of following contents: checkpoint frozen_inference_graph.mapping model.ckpt.index pipeline.config frozen_inference_graph.pb model.ckpt.data-00000-of-00001 model.ckpt.meta saved_model. I have only consider size of frozen model file(contains weight and bias) and pipeline.config for comparision because these are used for optimization i.e to generate IR files. IR files used for inferencing is of type FP32.
 
-| Model Name | Frozen Model Size | Intermediate Representation Size |
-| ------------ | ------------- |
-| ssd_mobilenet_v1_coco | 27.7 MB | 26 MB |
-| ssd_mobilenet_v2_coco | 66.5 MB | 64.3 MB |
-| ssdlite_mobilenet_v2_coco | 18.9 MB | 17.2 MB |
+  | Model Name | Frozen Model Size | Intermediate Representation Size |
+| ----------------------------- | ------- | ------- |
+| ssd_mobilenet_v1_coco  	| 27.7 MB | 26 MB   |
+| ssd_mobilenet_v2_coco 	| 66.5 MB | 64.3 MB |
+| ssdlite_mobilenet_v2_coco 	| 18.9 MB | 17.2 MB |
 | faster_rcnn_inception_v2_coco | 54.5 MB | 50.9 MB |
-| person-detection-retail-0013 | - | 2.90 MB |
+| person-detection-retail-0013 	|     -	  | 2.90 MB |
 
 
 To compare Inferencing speed and Frame per second after optimization, I have saved output video to disk also.
-| Model Name | Inferencing speed | Frame per second |
-| ------------ | ------------- |
-| ssd_mobilenet_v1_coco | 50ms | 8 |
-| ssd_mobilenet_v2_coco | 69ms | 7 |
-| ssdlite_mobilenet_v2_coco | 33ms | 10 |
-| faster_rcnn_inception_v2_coco | 875ms | 1 |
-| person-detection-retail-0013 | 45ms | 9 |
+  | Model Name         		| Inferencing speed | Frame per second |
+| ----------------------------- | ----------------- | ---------------- |
+| ssd_mobilenet_v1_coco 	| 50ms    	    | 8 	       |
+| ssd_mobilenet_v2_coco 	| 69ms              | 7                |
+| ssdlite_mobilenet_v2_coco 	| 33ms              | 10               |
+| faster_rcnn_inception_v2_coco | 875ms             | 1                |
+| person-detection-retail-0013  | 45ms              | 9                |
 
 ## Setup
 
