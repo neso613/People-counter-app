@@ -184,7 +184,7 @@ When running Intel® Distribution of OpenVINO™ toolkit Python applications on 
 Though by default application runs on CPU, this can also be explicitly specified by ```-d CPU``` command-line argument:
 
 ```
-python3.5 main.py -i resources/Pedestrain_Detect_2_1_1.mp4 -m /opt/intel/openvino/deployment_tools/tools/model_downloader/Retail/object_detection/pedestrian/rmnet_ssd/0013/dldt/person-detection-retail-0013.xml -l /opt/intel/openvino/deployment_tools/inference_engine/lib/intel64/libcpu_extension_sse4.so -d CPU -pt 0.6 | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -framerate 24 -i - http://localhost:8090/fac.ffm
+python3.5 main.py -i resources/Pedestrain_Detect_2_1_1.mp4 -m /path_of_model/model.xml -l /opt/intel/openvino/deployment_tools/inference_engine/lib/intel64/libcpu_extension_sse4.so -d CPU -pt 0.6 | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -framerate 24 -i - http://localhost:8090/fac.ffm
 ```
 To see the output on a web based interface, open the link [http://localhost:8080](http://localhost:8080/) in a browser.
 
@@ -194,7 +194,7 @@ To see the output on a web based interface, open the link [http://localhost:8080
 * To use GPU in 16 bit mode, use the following command
 
   ```
-  python3.5 main.py -i resources/Pedestrain_Detect_2_1_1.mp4 -m /opt/intel/openvino/deployment_tools/tools/model_downloader/Retail/object_detection/pedestrian/rmnet_ssd/0013/dldt/person-detection-retail-0013-fp16.xml -d GPU -pt 0.6 | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -framerate 24 -i - http://localhost:8090/fac.ffm
+  python3.5 main.py -i resources/Pedestrain_Detect_2_1_1.mp4 -m /path_of_model/model_fp16.xml -d GPU -pt 0.6 | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -framerate 24 -i - http://localhost:8090/fac.ffm
   ```
   To see the output on a web based interface, open the link [http://localhost:8080](http://localhost:8080/) in a browser.<br><br>
 
@@ -203,7 +203,7 @@ To see the output on a web based interface, open the link [http://localhost:8080
 * To use GPU in 32 bit mode, use the following command
 
   ```
-  python3.5 main.py -i resources/Pedestrain_Detect_2_1_1.mp4 -m /opt/intel/openvino/deployment_tools/tools/model_downloader/Retail/object_detection/pedestrian/rmnet_ssd/0013/dldt/person-detection-retail-0013.xml -d GPU -pt 0.6 | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -framerate 24 -i - http://localhost:8090/fac.ffm
+  python3.5 main.py -i resources/Pedestrain_Detect_2_1_1.mp4 -m /path_of_model/model.xml -d GPU -pt 0.6 | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -framerate 24 -i - http://localhost:8090/fac.ffm
   ```
   To see the output on a web based interface, open the link [http://localhost:8080](http://localhost:8080/) in a browser.
 
@@ -211,7 +211,7 @@ To see the output on a web based interface, open the link [http://localhost:8080
 #### Running on the Intel® Neural Compute Stick
 To run on the Intel® Neural Compute Stick, use the ```-d MYRIAD``` command-line argument:
 ```
-python3.5 main.py -d MYRIAD -i resources/Pedestrain_Detect_2_1_1.mp4 -m /opt/intel/openvino/deployment_tools/tools/model_downloader/Retail/object_detection/pedestrian/rmnet_ssd/0013/dldt/person-detection-retail-0013-fp16.xml -pt 0.6 | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -framerate 24 -i - http://localhost:8090/fac.ffm
+python3.5 main.py -d MYRIAD -i resources/Pedestrain_Detect_2_1_1.mp4 -m /path_of_model/model_fp16.xml -pt 0.6 | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -framerate 24 -i - http://localhost:8090/fac.ffm
 ```
 To see the output on a web based interface, open the link [http://localhost:8080](http://localhost:8080/) in a browser.<br>
 **Note:** The Intel® Neural Compute Stick can only run FP16 models. The model that is passed to the application, through the `-m <path_to_model>` command-line argument, must be of data type FP16.
@@ -234,7 +234,7 @@ For more information on programming the bitstreams, please refer to https://soft
 
 To run the application on the FPGA with floating point precision 16 (FP16), use the `-d HETERO:FPGA,CPU` command-line argument:
 ```
-python3.5 main.py -d HETERO:FPGA,CPU -i resources/Pedestrain_Detect_2_1_1.mp4 -l /opt/intel/openvino/deployment_tools/inference_engine/lib/intel64/libcpu_extension_sse4.so -m /opt/intel/openvino/deployment_tools/tools/model_downloader/Retail/object_detection/pedestrian/rmnet_ssd/0013/dldt/person-detection-retail-0013-fp16.xml -pt 0.6 | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -framerate 24 -i - http://localhost:8090/fac.ffm
+python3.5 main.py -d HETERO:FPGA,CPU -i resources/Pedestrain_Detect_2_1_1.mp4 -l /opt/intel/openvino/deployment_tools/inference_engine/lib/intel64/libcpu_extension_sse4.so -m /path_of_model/model_fp16.xml -pt 0.6 | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -framerate 24 -i - http://localhost:8090/fac.ffm
 ```
 
 #### Using Camera stream instead of video file
@@ -244,7 +244,7 @@ To get the input video from the camera, use ```-i CAM``` command-line argument. 
 
 For example:
 ```
-python3.5 main.py -i CAM -m /opt/intel/openvino/deployment_tools/tools/model_downloader/Retail/object_detection/pedestrian/rmnet_ssd/0013/dldt/person-detection-retail-0013.xml -l /opt/intel/openvino/deployment_tools/inference_engine/lib/intel64/libcpu_extension_sse4.so -d CPU -pt 0.6 | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -framerate 24 -i - http://localhost:8090/fac.ffm
+python3.5 main.py -i CAM -m /path_of_model/model.xml -l /opt/intel/openvino/deployment_tools/inference_engine/lib/intel64/libcpu_extension_sse4.so -d CPU -pt 0.6 | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -framerate 24 -i - http://localhost:8090/fac.ffm
 ```
 To see the output on a web based interface, open the link [http://localhost:8080](http://localhost:8080/) in a browser.
 
