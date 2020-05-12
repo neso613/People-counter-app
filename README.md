@@ -21,9 +21,15 @@ The counter will use the Inference Engine included in the Intel® Distribution o
 
 ## Explaining Custom Layers
 
+I do not convert any custom layer. I donot find any potential reasons for handling custom layers in a trained model
+
+## Model Research
+
 I have tried four public model downloaded from Tensorflow model zoo to optimize. Named [ssd_mobilenet_v1_coco](http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_coco_2018_01_28.tar.gz), [ssd_mobilenet_v2_coco](http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz), [ssdlite_mobilenet_v2_coco](http://download.tensorflow.org/models/object_detection/ssdlite_mobilenet_v2_coco_2018_05_09.tar.gz) and [faster_rcnn_inception_v2_coco](http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz). 
 
-All models have different accuracy and speed([see](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md))
+All models have different accuracy and speed([see](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md)) 
+
+## Explaining Conversion of Model into Intermediate Representation
 
 To convert the models into Intermediate Representation. I have used following command:
 
@@ -52,6 +58,13 @@ Original model consist of following contents: checkpoint frozen_inference_graph.
 | faster_rcnn_inception_v2_coco | 54.5 MB | 50.9 MB |
 | person-detection-retail-0013 	|     -	  | 2.90 MB |
 
+Inferencing speed before optimization 
+  | Model Name         		| Inferencing speed |
+| ----------------------------- | ----------------- | 
+| ssd_mobilenet_v1_coco 	| 80ms    	    |
+| ssd_mobilenet_v2_coco 	| 86ms              | 
+| ssdlite_mobilenet_v2_coco 	| 74ms              | 
+| faster_rcnn_inception_v2_coco | 132ms             | 
 
 To compare Inferencing speed and Frame per second after optimization, I have saved output video to disk also.
   | Model Name         		| Inferencing speed | Frame per second |
@@ -61,6 +74,8 @@ To compare Inferencing speed and Frame per second after optimization, I have sav
 | ssdlite_mobilenet_v2_coco 	| 33ms              | 10               |
 | faster_rcnn_inception_v2_coco | 875ms             | 1                |
 | person-detection-retail-0013  | 45ms              | 9                |
+
+I choose Intel's OpenVINO Pre Optimised IR file i.e [person-detection-retail-0013](https://download.01.org/opencv/2019/open_model_zoo/R3/20190905_163000_models_bin/person-detection-retail-0013/) to use in app.
 
 ## Setup
 
